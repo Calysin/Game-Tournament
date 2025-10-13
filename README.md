@@ -1,5 +1,11 @@
 # Game-Tournament
 
+Who are we?
+For this project, we are a group of 3 composed of:
+-Edouard DION
+-Irene CHEN
+-Julia TEA
+
 Project overview:
 Our project focuses on creating a management system for a company that organizes game tournaments. These tournaments include board games, card games, and online (video) games.
 The system manages:
