@@ -7,6 +7,7 @@ const routes = [
     name: 'home',
     component: HomeView
   },
+  
   {
     path: '/about',
     name: 'about',
@@ -15,6 +16,27 @@ const routes = [
     // which is lazy-loaded when the route is visited.
     component: function () {
       return import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
+    }
+  },
+  {
+    path: '/Boardtournament',
+    name: 'Boardtournament',
+    component: function () {
+      return import(/* webpackChunkName: "Boardtournament" */ '../views/BoardtournamentView.vue')
+    }
+  },
+  {
+    path: '/Cardtournament',
+    name: 'Cardtournament',
+    component: function () {
+      return import(/* webpackChunkName: "Cardtournament" */ '../views/CardtournamentView.vue')
+    }
+  },
+  {
+    path: '/Esporttournament',
+    name: 'Esporttournament',
+    component: function () {
+      return import(/* webpackChunkName: "Esporttournament" */ '../views/EsporttournamentView.vue')
     }
   }
 ]
