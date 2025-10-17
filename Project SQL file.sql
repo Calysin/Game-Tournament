@@ -128,37 +128,44 @@ INSERT INTO Match_ (ID_match_, ID_tournament, ID_Game, Date_game, Table_number, 
 (13, 3, 9, '2023-04-27', 3, 'Table', 60, 1),
 (14, 3, 10, '2023-04-28', 4, 'Table', 75, 1);
 
-INSERT INTO Participate (ID_player, ID_match, Score, Position_player, Status) VALUES ( 
+INSERT INTO Participate (ID_player, ID_match_, Score, Position_player, Status_) VALUES 
 -- CARD
--- Uno
+-- Uno (8 players)
 (1, 1, 40, 1, 'Win'),
-(2, 1,  25, 4, 'Loose'),
+(2, 1, 25, 4, 'Loose'),
 (3, 1, 20, 5, 'Loose'),
 (4, 1, 30, 3, 'Loose'),
 (5, 1, 10, 7, 'Loose'),
 (6, 1, 35, 2, 'Loose'),
 (7, 1, 15, 6, 'Loose'),
 (8, 1, 5, 8, 'Loose'),
--- Belote
+
+-- Belote Match 2 (4 players - team game)
 (1, 2, 10, 1, 'Win'),
 (2, 2, 10, 1, 'Win'),
 (3, 2, 5, 2, 'Loose'),
 (4, 2, 5, 2, 'Loose'),
-(5, 3, 5, 2, 'Loose'), 
-(6, 3,  10, 1, 'Win'),
-(7, 3,  10, 1, 'Win'),
-(8, 3,  5, 2, 'Loose'),
--- Kems
+
+-- Belote Match 3 (4 players - team game)
+(5, 3, 5, 2, 'Loose'),
+(6, 3, 10, 1, 'Win'),
+(7, 3, 10, 1, 'Win'),
+(8, 3, 5, 2, 'Loose'),
+
+-- Kems Match 4 (4 players - team game)
 (1, 4, 5, 2, 'Loose'),
 (2, 4, 10, 1, 'Win'),
 (3, 4, 10, 1, 'Win'),
 (4, 4, 5, 2, 'Loose'),
+
+-- Kems Match 5 (4 players - team game)
 (5, 5, 10, 1, 'Win'),
 (6, 5, 10, 1, 'Win'),
 (7, 5, 5, 2, 'Loose'),
 (8, 5, 5, 2, 'Loose'),
+
 -- ONLINE
--- GI
+-- GenshinImpact (10 players)
 (1, 7, 55, 1, 'Win'),
 (2, 7, 50, 2, 'Loose'),
 (3, 7, 35, 5, 'Loose'),
@@ -169,18 +176,20 @@ INSERT INTO Participate (ID_player, ID_match, Score, Position_player, Status) VA
 (8, 7, 40, 4, 'Loose'),
 (9, 7, 10, 9, 'Loose'),
 (10, 7, 30, 6, 'Loose'),
--- Valo
+
+-- Valorant (10 players - 5v5 team game)
 (1, 8, 5, 2, 'Loose'),
 (2, 8, 10, 1, 'Win'),
 (3, 8, 10, 1, 'Win'),
 (4, 8, 5, 2, 'Loose'),
-(5, 8, 10, 1, 'Win),
-(6, 8, 10, 1, 'Win),
+(5, 8, 10, 1, 'Win'),
+(6, 8, 10, 1, 'Win'),
 (7, 8, 5, 2, 'Loose'),
 (8, 8, 10, 1, 'Win'),
 (9, 8, 5, 2, 'Loose'),
 (10, 8, 5, 2, 'Loose'),
--- LoL
+
+-- LeagueOfLegends (10 players - 5v5 team game)
 (1, 6, 5, 2, 'Loose'),
 (2, 6, 10, 1, 'Win'),
 (3, 6, 5, 2, 'Loose'),
@@ -191,27 +200,35 @@ INSERT INTO Participate (ID_player, ID_match, Score, Position_player, Status) VA
 (8, 6, 10, 1, 'Win'),
 (9, 6, 5, 2, 'Loose'),
 (10, 6, 10, 1, 'Win'),
+
 -- BOARD
--- Monop
+-- Monopoly (4 players)
 (1, 9, 15, 2, 'Loose'),
 (2, 9, 10, 3, 'Loose'),
 (3, 9, 5, 4, 'Loose'),
 (4, 9, 20, 1, 'Win'),
---Echec
+
+-- Echec Match 10 (2 players)
 (1, 10, 10, 1, 'Win'),
 (2, 10, 5, 2, 'Loose'),
+
+-- Echec Match 11 (2 players)
 (3, 11, 10, 1, 'Win'),
 (4, 11, 5, 2, 'Loose'),
--- Dame
+
+-- JeuDeDame Match 12 (2 players)
 (1, 12, 5, 2, 'Loose'),
+(3, 12, 10, 1, 'Win'),
+
+-- JeuDeDame Match 13 (2 players)
 (2, 13, 5, 2, 'Loose'),
-(3, 12, 10, 1, 'Win'), 
-(4, 13, 10, 1, 'Win'), 
---LaBonnePaye
+(4, 13, 10, 1, 'Win'),
+
+-- LaBonnePaye (4 players)
 (1, 14, 10, 3, 'Loose'),
-(2, 14, 20, 1, 'Win'), 
+(2, 14, 20, 1, 'Win'),
 (3, 14, 15, 2, 'Loose'),
-(4, 14, 5, 4, 'Loose'));
+(4, 14, 5, 4, 'Loose');
 
 select * from Player;
 select * from Game;
