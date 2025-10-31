@@ -24,7 +24,7 @@
         <img src="../assets/cardtournament.png" width="400">
       </router-link>
     </p>
-    <p> E-sport game tournament<br></br>
+    <p> Online game tournament<br></br>
       <router-link to="/Esporttournament">
         <img src="../assets/esporttournament.png" width="400">
       </router-link>
