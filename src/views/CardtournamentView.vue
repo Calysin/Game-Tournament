@@ -60,6 +60,10 @@
         <li>Uno, Belote, Kems Tournament</li>
       </ul>
     </section>
+
+    <div class="links">
+      <router-link to="/about">About us</router-link>
+    </div>
   </div>
 </template>
 
@@ -200,6 +204,17 @@ ol li {
 
 .upcoming ol li:last-child {
   border-bottom: none;
+}
+
+a {
+  text-decoration: none;
+  color: #1b73b2;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: #42b983;
 }
 
 /* === RESPONSIVE DESIGN === */

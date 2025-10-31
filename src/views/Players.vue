@@ -22,6 +22,12 @@
       </tbody>
     </table>
   </div>
+
+  <div class="links">
+      <ul>
+        <li><router-link to="/about">About us</router-link></li>
+      </ul>
+    </div>
 </template>
 
 <script>
@@ -48,8 +54,9 @@ export default {
 }
 
 h1 {
-  margin-bottom: 30px;
+  font-size: 2.5rem;
   color: #1976d2;
+  margin-bottom: 10px;
 }
 
 /* === Table Styles === */
@@ -83,6 +90,18 @@ tbody tr:nth-child(even) {
 tbody tr:hover {
   background-color: #e0f7fa;
   transform: scale(1.01);
+}
+
+/* === Links === */
+a {
+  text-decoration: none;
+  color: #1b73b2;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: #42b983;
 }
 
 /* === Responsive === */

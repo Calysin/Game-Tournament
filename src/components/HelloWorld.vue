@@ -4,7 +4,7 @@
 
     <div class="intro">
       <h3>
-        At <span class="highlight">JEI Entertainment</span>, we believe every player has a champion waiting to emerge. We are the premier destination for competitive gaming, a vibrant hub where passion for strategy, skill, and community converges. Whether your battleground is the digital realm, the strategic depth of a board, or the shuffle of a deck, you'll find your place here.  
+        At <span class="highlight">JEI Entertainment</span>, we believe every player has a champion waiting to emerge. We are the first destination for competitive gaming, a vibrant hub where passion for strategy, skill, and community converges. Whether your battleground is the digital realm, the strategic depth of a board, or the shuffle of a deck, you'll find your place here.  
         <br><br>
         We host a constantly evolving calendar of tournaments for every kind of gamer. Test your reflexes in our video game championships, outmaneuver your opponents in deep board game clashes, or prove your mastery in intense card game duels. From casual weekly events to grand championships, JEI Entertainment is where legends are forged.  
         <br><br>
@@ -42,9 +42,7 @@
     </div>
 
     <div class="links">
-      <ul>
-        <li><router-link to="/about">About us</router-link></li>
-      </ul>
+      <router-link to="/about">About us</router-link>
     </div>
   </div>
 </template>
