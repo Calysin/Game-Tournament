@@ -2,7 +2,7 @@
   <div id="app">
     <nav>
       <router-link to="/">Home</router-link>
-      <router-link to="/about">About</router-link>
+      <router-link to="/Players">Players</router-link>
       <router-link to="/boardtournament">Board Tournament</router-link>
       <router-link to="/cardtournament">Card Tournament</router-link>
       <router-link to="/esporttournament">Online Tournament</router-link>
@@ -17,7 +17,7 @@
 body {
   margin: 0;
   padding: 0;
-  background-color: #d6ecff; /* Bleu clair doux */
+  background-color: #d6ecff; 
   font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 

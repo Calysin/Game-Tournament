@@ -38,6 +38,13 @@ const routes = [
     component: function () {
       return import(/* webpackChunkName: "Esporttournament" */ '../views/EsporttournamentView.vue')
     }
+  },
+  {
+    path: '/Players',
+    name: 'Players',
+    component: function () {
+      return import(/* webpackChunkName: "Players" */ '../views/Players.vue')
+    }
   }
 ]
 

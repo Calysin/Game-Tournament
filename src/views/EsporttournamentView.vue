@@ -1,6 +1,6 @@
 <template>
   <div class="esport-tournament">
-    <h1>Online Game Tournaments</h1>
+    <h1>🎮Online Game Tournaments</h1>
     <p class="intro">Welcome to the heart of competitive online gaming!</p>
 
     <p class="description">
@@ -65,7 +65,7 @@
 
 <style scoped>
 .esport-tournament {
-  background: linear-gradient(180deg, #fff 0%, #e8f5ff 100%);
+  background: linear-gradient(180deg, #fff 0%, #d6ecff 100%);
   color: #1a2a42;
   font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   text-align: center;
@@ -157,7 +157,7 @@ ol {
 }
 
 ol li {
-  background: #e3f2fd;
+  background: #f1f5f7;
   border-left: 5px solid #42a5f5;
   padding: 10px 15px;
   margin-bottom: 10px;

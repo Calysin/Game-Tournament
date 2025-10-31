@@ -1,6 +1,6 @@
 <template>
   <div class="card-tournament">
-    <h1>Card Game Tournaments</h1>
+    <h1>🃏Card Game Tournaments</h1>
     <p class="intro">Welcome to the heart of strategy, luck, and fun!</p>
 
     <p class="description">
@@ -11,15 +11,15 @@
       <h2>Featured Games</h2>
       <div class="game-grid">
         <div class="game-card">
-          <h3>Uno</h3>
+          <h3>♥️Uno</h3>
           <p>Fast-paced, colorful, and full of surprises.</p>
         </div>
         <div class="game-card">
-          <h3>Belote</h3>
+          <h3>♠️Belote</h3>
           <p>A classic trick-taking game beloved across Europe.</p>
         </div>
         <div class="game-card">
-          <h3>Kems</h3>
+          <h3>♦️Kems</h3>
           <p>A partnership game of secret signals and perfect coordination.</p>
         </div>
       </div>
@@ -65,7 +65,7 @@
 
 <style scoped>
 .card-tournament {
-  background: linear-gradient(180deg, #fff 0%, #e3f2fd 100%);
+  background: linear-gradient(180deg, #fff 0%, #d6ecff 100%);
   color: #1a2a42;
   font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   text-align: center;
@@ -157,7 +157,7 @@ ol {
 }
 
 ol li {
-  background: #e3f2fd;
+  background: #f1f5f7;
   border-left: 5px solid #42a5f5;
   padding: 10px 15px;
   margin-bottom: 10px;

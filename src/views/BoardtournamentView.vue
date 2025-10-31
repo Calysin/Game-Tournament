@@ -12,15 +12,15 @@
       <h2>Featured Games</h2>
       <div class="game-grid">
         <div class="game-card">
-          <h3>Monopoly</h3>
+          <h3>🎩Monopoly</h3>
           <p>Buy, trade, and build your way to victory in this timeless game of property and luck.</p>
         </div>
         <div class="game-card">
-          <h3>Checkers</h3>
+          <h3>♟️Checkers</h3>
           <p>A game of pure strategy and skill. Outmaneuver your opponent and claim the board!</p>
         </div>
         <div class="game-card">
-          <h3>La Bonne Paye</h3>
+          <h3>💸La Bonne Paye</h3>
           <p>Manage your finances, pay your bills, and be the first to succeed in this French classic.</p>
         </div>
       </div>
@@ -67,7 +67,7 @@
 
 <style scoped>
 .board-tournament {
-  background: linear-gradient(180deg, #fff 0%, #f0f8ff 100%);
+  background: linear-gradient(180deg, #fff 0%, #d6ecff 100%);
   color: #1a2a42;
   font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   text-align: center;
@@ -150,7 +150,7 @@ li {
   border-radius: 8px;
 }
 
-/* === How to Participate === */
+/* How to Participate */
 ol {
   max-width: 500px;
   margin: 0 auto;
@@ -159,7 +159,7 @@ ol {
 }
 
 ol li {
-  background: #e3f2fd;
+  background: #f1f5f7;
   border-left: 5px solid #42a5f5;
   padding: 10px 15px;
   margin-bottom: 10px;
