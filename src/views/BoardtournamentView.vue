@@ -73,7 +73,6 @@
 
 <style scoped>
 .board-tournament {
-  background: linear-gradient(180deg, #fff 0%, #d6ecff 100%);
   color: #1a2a42;
   font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   text-align: center;
