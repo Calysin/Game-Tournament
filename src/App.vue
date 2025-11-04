@@ -3,6 +3,7 @@
     <nav>
       <router-link to="/">Home</router-link>
       <router-link to="/Players">Players</router-link>
+      <router-link to="/Games">Games</router-link>
       <router-link to="/boardtournament">Board Tournament</router-link>
       <router-link to="/cardtournament">Card Tournament</router-link>
       <router-link to="/esporttournament">Online Tournament</router-link>

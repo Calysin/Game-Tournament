@@ -1,7 +1,8 @@
 <template>
   <div class="players">
     <h1>Past Participants</h1>
-    <p>Welcome to our participant registry! Here you can explore the players who have joined our past and ongoing game tournaments. Each participant brings their unique skills, strategies, and enthusiasm to our competitions, whether they’re conquering board games, mastering card games, or competing in online challenges. This list celebrates the vibrant community of gamers who make our tournaments exciting and memorable.</p>
+    <p class="intro">
+      This is our participant registry! Here you can explore the players who have joined our past and ongoing game tournaments. Each participant brings their unique skills, strategies, and enthusiasm to our competitions, whether they’re conquering board games, mastering card games, or competing in online challenges. This list celebrates the vibrant community of gamers who make our tournaments exciting and memorable.</p>
 
     <table>
       <thead>
@@ -58,8 +59,19 @@ h1 {
   color: #1976d2;
   margin-bottom: 10px;
 }
+.intro {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #333;
+  margin-bottom: 40px;
+  background-color: #f5faff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+  text-align: justify;
+}
 
-/* === Table Styles === */
+/*Table Styles */
 table {
   width: 100%;
   border-collapse: collapse;
@@ -92,7 +104,7 @@ tbody tr:hover {
   transform: scale(1.01);
 }
 
-/* === Links === */
+
 a {
   text-decoration: none;
   color: #1b73b2;
@@ -104,7 +116,7 @@ a:hover {
   color: #42b983;
 }
 
-/* === Responsive === */
+/* Responsive */
 @media (max-width: 700px) {
   th, td {
     padding: 10px;
