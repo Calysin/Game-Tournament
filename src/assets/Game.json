@@ -1,0 +1,82 @@
+[
+  {
+    "ID_game": 1,
+    "Name_game": "Uno",
+    "Type_game": "Card",
+    "Editor": "Mattel",
+    "Release_date": "1971-01-01",
+    "Age_requirement": 6
+  },
+  {
+    "ID_game": 2,
+    "Name_game": "LeagueOfLegends",
+    "Type_game": "Online",
+    "Editor": "RiotGames",
+    "Release_date": "2009-10-27",
+    "Age_requirement": 12
+  },
+  {
+    "ID_game": 3,
+    "Name_game": "Belote",
+    "Type_game": "Card",
+    "Editor": "Unknown",
+    "Release_date": "1920-01-01",
+    "Age_requirement": 6
+  },
+  {
+    "ID_game": 4,
+    "Name_game": "Kems",
+    "Type_game": "Card",
+    "Editor": "Unknown",
+    "Release_date": "1999-01-01",
+    "Age_requirement": 10
+  },
+  {
+    "ID_game": 5,
+    "Name_game": "Monopoly",
+    "Type_game": "Board",
+    "Editor": "Hasbro",
+    "Release_date": "1935-01-01",
+    "Age_requirement": 3
+  },
+  {
+    "ID_game": 6,
+    "Name_game": "GenshinImpact",
+    "Type_game": "Online",
+    "Editor": "Hoyoverse",
+    "Release_date": "2020-09-28",
+    "Age_requirement": 12
+  },
+  {
+    "ID_game": 7,
+    "Name_game": "Echec",
+    "Type_game": "Board",
+    "Editor": "Unknown",
+    "Release_date": "0600-01-01",
+    "Age_requirement": 6
+  },
+  {
+    "ID_game": 8,
+    "Name_game": "Valorant",
+    "Type_game": "Online",
+    "Editor": "RiotGames",
+    "Release_date": "2020-06-02",
+    "Age_requirement": 16
+  },
+  {
+    "ID_game": 9,
+    "Name_game": "JeuDeDame",
+    "Type_game": "Board",
+    "Editor": "Unknown",
+    "Release_date": "1100-01-01",
+    "Age_requirement": 5
+  },
+  {
+    "ID_game": 10,
+    "Name_game": "LaBonnePaye",
+    "Type_game": "Board",
+    "Editor": "Hasbro",
+    "Release_date": "1984-01-01",
+    "Age_requirement": 7
+  }
+]
