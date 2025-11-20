@@ -49,7 +49,7 @@
     </p>
 
     <p><strong>Ready to shuffle up and deal?</strong></p>
-    <button class="join-btn">Join a Tournament Today!</button>
+    <button class="join-btn">Join a Tournament today!</button>
 
     <section class="upcoming">
       <h2>Upcoming Card Game Tournaments</h2>

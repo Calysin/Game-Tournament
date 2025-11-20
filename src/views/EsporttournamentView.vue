@@ -49,7 +49,7 @@
     </p>
 
     <p><strong>Ready to play?</strong></p>
-    <button class="join-btn">Log in now and join the competition!</button>
+    <button class="join-btn">Join a Tournament today!</button>
 
     <section class="upcoming">
       <h2>Upcoming Online Tournaments</h2>
