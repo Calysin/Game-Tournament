@@ -38,7 +38,7 @@
     <section class="how-to">
       <h2>How to Participate</h2>
       <ol>
-        <li>Create an Account – Sign up and verify your profile.</li>
+        <li>Create an Account and log in</li>
         <li>Register for a Tournament – Choose your game and category.</li>
         <li>Check-In & Play – Be online at the scheduled time and give it your all!</li>
       </ol>
