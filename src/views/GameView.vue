@@ -4,8 +4,9 @@
     <h1>🎮 Games & 🏆 Tournaments Management</h1>
 
     <p class="intro">
-      Manage the list of games and past tournaments used in JEI Entertainment.
-      Original entries from the provided JSON are locked for authenticity — you can add new entries and edit or delete only the ones you add.
+       Welcome to our official list of games featured in JEI Entertainment tournaments!                                  
+
+           Across the years, we’ve hosted exciting competitions spanning board, card, and online games.  
     </p>
 
     <!-- === GAMES SECTION === -->
@@ -90,7 +91,7 @@
     <section class="section">
       <h2>Past Tournaments</h2>
 
-      <!-- Add Tournament Form -->
+   
       <div class="add-box">
         <h3>Add a Tournament</h3>
         <form @submit.prevent="addTournament" class="form-row">
@@ -103,7 +104,6 @@
         </form>
       </div>
 
-      <!-- Edit Tournament Box -->
       <div v-if="editingTournament" class="add-box">
         <h3>Edit Tournament</h3>
         <form @submit.prevent="confirmEditTournament" class="form-row">
@@ -165,15 +165,14 @@ export default {
   name: 'GameTournamentCrud',
   data() {
     return {
-      // initial data (will remain in-memory only)
+  
       games: Array.isArray(gamesData) ? JSON.parse(JSON.stringify(gamesData)) : [],
       tournaments: Array.isArray(tournamentsData) ? JSON.parse(JSON.stringify(tournamentsData)) : [],
 
-      // track IDs of newly added items (those are editable/deletable)
+      // track IDs of newly added items
       editableGames: [],
       editableTournaments: [],
 
-      // forms for adding
       newGame: {
         Name_game: '',
         Type_game: '',
@@ -196,15 +195,13 @@ export default {
   },
 
   methods: {
-    /* ---------- Games CRUD ---------- */
     formatDate(d) {
       if (!d) return '';
-      // If date is YYYY-MM-DD, return it nicely or try to parse
       return d;
     },
 
     addGame() {
-      // basic validation
+     
       const g = this.newGame;
       if (!g.Name_game || !g.Type_game || !g.Editor || !g.Release_date || g.Age_requirement == null) return;
 
@@ -248,7 +245,6 @@ export default {
       this.editableGames = this.editableGames.filter(x => x !== id);
     },
 
-    /* ---------- Tournaments CRUD ---------- */
     addTournament() {
       const t = this.newTournament;
       if (!t.Name_tournament || !t.Location || !t.Date_start || !t.Date_end || !t.Reward) return;
@@ -320,12 +316,12 @@ h1 {
   box-shadow: 0 3px 8px rgba(0,0,0,0.06);
 }
 
-/* Section */
+
 .section {
   margin-top: 30px;
 }
 
-/* Add / Edit boxes */
+
 .add-box {
   background: #f5faff;
   padding: 18px;
@@ -346,7 +342,7 @@ h1 {
   align-items: center;
 }
 
-/* inputs */
+
 .form-row input,
 .form-row select {
   padding: 10px;

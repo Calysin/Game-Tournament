@@ -4,8 +4,7 @@
 
     <p class="intro">
       This is our participant registry! Here you can explore the players who have joined our past and ongoing tournaments.
-      Each participant brings strategy, skills, and enthusiasm to our events. New participants you add can be edited or
-      deleted — but original tournament participants are locked for authenticity.
+      Each participant brings strategy, skills, and enthusiasm to our events. You can also add new players, edit their information, or remove them from the list as needed.
     </p>
 
     <!-- ADD PLAYER -->
@@ -71,7 +70,6 @@
           <td>{{ player.Gender }}</td>
 
           <td>
-            <!-- Only allow actions for user-added players -->
             <template v-if="editablePlayers.includes(player.ID_player)">
               <button @click="startEdit(player)" class="action-btn edit-btn">Edit</button>
               <button @click="deletePlayer(player.ID_player)" class="action-btn delete-btn">Delete</button>
@@ -87,11 +85,7 @@
 
   </div>
 
-  <div class="links">
-    <ul>
-      <li><router-link to="/about">About us</router-link></li>
-    </ul>
-  </div>
+  
 </template>
 
 <script>
@@ -111,12 +105,12 @@ export default {
         Gender: ""
       },
       editingPlayer: null,
-      editablePlayers: [] // store IDs of players added by the user
+      editablePlayers: [] 
     };
   },
 
   methods: {
-    // ADD NEW PLAYER
+  
     addPlayer() {
       const nextId =
         this.players.length > 0

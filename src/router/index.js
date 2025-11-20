@@ -7,17 +7,15 @@ const routes = [
     name: 'home',
     component: HomeView
   },
-  
+
   {
     path: '/about',
     name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: function () {
       return import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
     }
   },
+
   {
     path: '/Boardtournament',
     name: 'Boardtournament',
@@ -25,6 +23,7 @@ const routes = [
       return import(/* webpackChunkName: "Boardtournament" */ '../views/BoardtournamentView.vue')
     }
   },
+
   {
     path: '/Cardtournament',
     name: 'Cardtournament',
@@ -32,6 +31,7 @@ const routes = [
       return import(/* webpackChunkName: "Cardtournament" */ '../views/CardtournamentView.vue')
     }
   },
+
   {
     path: '/Esporttournament',
     name: 'Esporttournament',
@@ -39,6 +39,7 @@ const routes = [
       return import(/* webpackChunkName: "Esporttournament" */ '../views/EsporttournamentView.vue')
     }
   },
+
   {
     path: '/Players',
     name: 'Players',
@@ -46,11 +47,28 @@ const routes = [
       return import(/* webpackChunkName: "Players" */ '../views/Players.vue')
     }
   },
+
   {
     path: '/Games',
     name: 'Games',
     component: function () {
       return import(/* webpackChunkName: "Games" */ '../views/GameView.vue')
+    }
+  },
+
+  {
+    path: '/Login',
+    name: 'Login',
+    component: function () {
+      return import(/* webpackChunkName: "Login" */ '../views/LoginView.vue')
+    }
+  },
+
+  {
+    path: '/JoinTournament',
+    name: 'JoinTournament',
+    component: function () {
+      return import(/* webpackChunkName: "JoinTournament" */ '../views/JoinTournamentView.vue')
     }
   }
 ]

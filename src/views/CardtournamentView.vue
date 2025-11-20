@@ -49,7 +49,8 @@
     </p>
 
     <p><strong>Ready to shuffle up and deal?</strong></p>
-    <button class="join-btn">Join a Tournament today!</button>
+    <button class="join-btn" @click="$router.push('/JoinTournament')">Join a Tournament</button>
+
 
     <section class="upcoming">
       <h2>Upcoming Card Game Tournaments</h2>

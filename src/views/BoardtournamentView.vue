@@ -51,7 +51,8 @@
     </p>
 
     <p><strong>Ready to roll the dice?</strong></p>
-    <button class="join-btn">Join a tournament today!</button>
+    <button class="join-btn" @click="$router.push('/JoinTournament')">Join a Tournament</button>
+
 
     <section class="upcoming">
       <h2>Upcoming Board Game Tournaments</h2>
