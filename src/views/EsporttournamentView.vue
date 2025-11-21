@@ -1,6 +1,6 @@
 <template>
   <div class="esport-tournament">
-    <h1>🎮Online Game Tournaments</h1>
+    <h1>Online Game Tournaments</h1>
     <p class="intro">Welcome to the heart of competitive online gaming!</p>
 
     <p class="description">

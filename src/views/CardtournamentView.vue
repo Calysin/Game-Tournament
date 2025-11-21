@@ -1,6 +1,6 @@
 <template>
   <div class="card-tournament">
-    <h1>🃏Card Game Tournaments</h1>
+    <h1>Card Game Tournaments</h1>
     <p class="intro">Welcome to the heart of strategy, luck, and fun!</p>
 
     <p class="description">
@@ -28,10 +28,10 @@
     <section class="why-join">
       <h2>Why Join?</h2>
       <ul>
-        <li>🃏 Play with friends and meet new opponents</li>
-        <li>🏆 Compete for exciting rewards and recognition</li>
-        <li>📅 Regular events with a friendly, competitive atmosphere</li>
-        <li>🎯 Games suited for all ages and skill levels</li>
+        <li> Play with friends and meet new opponents</li>
+        <li> Compete for exciting rewards and recognition</li>
+        <li> Regular events with a friendly, competitive atmosphere</li>
+        <li> Games suited for all ages and skill levels</li>
       </ul>
     </section>
 

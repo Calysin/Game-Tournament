@@ -1,6 +1,6 @@
 <template>
   <div class="board-tournament">
-    <h1>🎲 Board Game Tournaments</h1>
+    <h1>Board Game Tournaments</h1>
     <p class="intro"> Welcome to the heart of classic gaming! 
       
     <p class="description">
@@ -29,10 +29,10 @@
     <section class="why-join">
       <h2>Why Join Our Board Game Tournaments?</h2>
       <ul>
-        <li>🏆 Compete for exclusive rewards and recognition</li>
-        <li>👥 Meet fellow board game enthusiasts</li>
-        <li>🧠 Challenge your mind with strategic and tactical gameplay</li>
-        <li>🎉 Enjoy a friendly and welcoming environment</li>
+        <li> Compete for exclusive rewards and recognition</li>
+        <li> Meet fellow board game enthusiasts</li>
+        <li> Challenge your mind with strategic and tactical gameplay</li>
+        <li> Enjoy a friendly and welcoming environment</li>
       </ul>
     </section>
 
