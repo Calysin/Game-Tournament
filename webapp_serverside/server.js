@@ -17,7 +17,7 @@ app.listen(process.env.WEB_PORT, '0.0.0.0',
 
 // setup form input (create request.body from POST data or json in the http request)
 const bodyParser = require("body-parser");
-app.use(bodyParser.json(), bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json({type: "text/plain"}), bodyParser.urlencoded({ extended: true }));
 
 // setup serverside session storage
 const session = require("express-session");
