@@ -42,7 +42,6 @@
         <li>Create an account and log in</li>
         <li>Browse upcoming tournaments and check the schedule</li>
         <li>Register for your favorite board game events</li>
-        <li>Show up and play – may the best strategist win!</li>
       </ol>
     </section>
 
