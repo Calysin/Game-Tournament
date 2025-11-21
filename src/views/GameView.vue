@@ -9,11 +9,10 @@
            Across the years, we’ve hosted exciting competitions spanning board, card, and online games.  
     </p>
 
-    <!-- === GAMES SECTION === -->
+
     <section class="section">
       <h2>All Featured Games</h2>
 
-      <!-- Add Game Form -->
       <div class="add-box">
         <h3>Add a Game</h3>
         <form @submit.prevent="addGame" class="form-row">
@@ -31,7 +30,7 @@
         </form>
       </div>
 
-      <!-- Edit Game Box -->
+  
       <div v-if="editingGame" class="add-box">
         <h3>Edit Game</h3>
         <form @submit.prevent="confirmEditGame" class="form-row">
@@ -52,7 +51,7 @@
         </form>
       </div>
 
-      <!-- Games Table -->
+  //  Games Table
       <table class="data-table">
         <thead>
           <tr>
