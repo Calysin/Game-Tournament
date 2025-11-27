@@ -24,16 +24,24 @@ export default {
       success: false
     };
   },
-  methods: {
-    login() {
-      this.success = true;
-      localStorage.setItem("loggedIn", "true");
+  async login() {
+  try {
+    const res = await fetch("http://localhost:3000/auth/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email: this.email, password: this.password })
+    });
 
-      setTimeout(() => {
-        this.$router.push("/JoinTournament");
-      }, 1200);
+    const data = await res.json();
+    if (data.success) {
+      this.success = true;
+      setTimeout(() => this.$router.push("/JoinTournament"), 1200);
     }
+  } catch (err) {
+    console.error(err);
   }
+}
+
 };
 </script>
 
