@@ -1,12 +1,12 @@
 <template>
   <div class="board-tournament">
     <h1>Board Game Tournaments</h1>
-    <p class="intro"> Welcome to the heart of classic gaming! 
+    <p class="intro"> Welcome to the heart of classic gaming! </p>
       
     <p class="description">
       Our Board Game Tournaments bring together strategy, fun, and competition in a lively and social atmosphere.                                                                                                      
       Whether you're a seasoned veteran or new to the world of board games, there’s a place for you at our tables.
-    </p></p>
+    </p>
     
     <section class="featured">
       <h2>Featured Games</h2>
