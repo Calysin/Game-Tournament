@@ -1,0 +1,26 @@
+[
+  {
+    "ID_tournament": 1,
+    "Name_tournament": "CardCaptor",
+    "Location": "Paris",
+    "Date_start": "2020-08-20",
+    "Date_end": "2020-08-22",
+    "Reward": "Money"
+  },
+  {
+    "ID_tournament": 2,
+    "Name_tournament": "OnlineTournament",
+    "Location": "Paris",
+    "Date_start": "2025-12-13",
+    "Date_end": "2025-12-15",
+    "Reward": "Money"
+  },
+  {
+    "ID_tournament": 3,
+    "Name_tournament": "BoardTournament",
+    "Location": "Paris",
+    "Date_start": "2023-04-25",
+    "Date_end": "2023-04-28",
+    "Reward": "Money"
+  }
+]
