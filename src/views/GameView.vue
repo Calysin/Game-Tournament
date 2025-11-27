@@ -1,7 +1,7 @@
 <template>
   <div class="games-tournaments">
 
-    <h1>🎮 Games & 🏆 Tournaments Management</h1>
+    <h1>Games & Tournaments Management</h1>
 
     <p class="intro">
        Welcome to our official list of games featured in JEI Entertainment tournaments!                                  
