@@ -51,7 +51,7 @@
         </form>
       </div>
 
-  //  Games Table
+       <h2>Games Table</h2>
       <table class="data-table">
         <thead>
           <tr>

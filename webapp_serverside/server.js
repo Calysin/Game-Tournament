@@ -1,7 +1,7 @@
 import express from "express";
 import cors from "cors";
 
-import playersRoutes from "./routes/playersRoutes.js";
+import playersRoutes from "./routes/playersRoutes.js";  
 import gamesRoutes from "./routes/gamesRoutes.js";
 import tournamentsRoutes from "./routes/tournamentsRoutes.js";
 import authRoutes from "./routes/authRoutes.js";
@@ -15,4 +15,13 @@ app.use("/games", gamesRoutes);
 app.use("/tournaments", tournamentsRoutes);
 app.use("/auth", authRoutes);
 
-app.listen(3000, () => console.log("Server running on http://localhost:3000"));
+const PORT = 3000;
+app.listen(PORT, () => {
+  console.log(`Server running on http://localhost:${PORT}`);
+});
+
+
+
+
+
+

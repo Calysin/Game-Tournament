@@ -3,14 +3,17 @@
     <h1>Login</h1>
 
 
-    <form @submit.prevent="login">
-      <input v-model="email" type="text" placeholder="Email" required />
-      <input v-model="password" type="password" placeholder="Password" required />
+<form @submit.prevent="login">
+  <input v-model="email" type="text" placeholder="Email" required />
+  <input v-model="password" type="password" placeholder="Password" required />
 
-      <button type="submit">Login</button>
-    </form>
+  <button type="submit">Login</button>
+</form>
 
-    <p v-if="success" class="success"> Login successful!</p>
+<p v-if="success" class="success">🎉 Login successful!</p>
+<p v-if="error" class="error">{{ error }}</p>
+
+
   </div>
 </template>
 
@@ -21,27 +24,38 @@ export default {
     return {
       email: "",
       password: "",
-      success: false
+      success: false,
+      error: ""
     };
   },
-  async login() {
-  try {
-    const res = await fetch("http://localhost:3000/auth/login", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email: this.email, password: this.password })
-    });
+  methods: {
+    async login() {
+      this.error = "";
+      try {
+        const response = await fetch("http://localhost:3000/auth/login", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email: this.email, password: this.password })
+        });
 
-    const data = await res.json();
-    if (data.success) {
-      this.success = true;
-      setTimeout(() => this.$router.push("/JoinTournament"), 1200);
+        const data = await response.json();
+
+        if (data.success) {
+          this.success = true;
+          localStorage.setItem("loggedIn", "true");
+
+          setTimeout(() => {
+            this.$router.push("/JoinTournament");
+          }, 1200);
+        } else {
+          this.error = "Invalid credentials, please try again.";
+        }
+      } catch (err) {
+        console.error(err);
+        this.error = "Server error. Try again later.";
+      }
     }
-  } catch (err) {
-    console.error(err);
   }
-}
-
 };
 </script>
 
@@ -74,10 +88,14 @@ button {
 button:hover {
   background-color: #2f8b68;
 }
-
 .success {
   margin-top: 15px;
   color: #2e8b57;
+  font-weight: bold;
+}
+.error {
+  margin-top: 15px;
+  color: #e74c3c;
   font-weight: bold;
 }
 </style>
