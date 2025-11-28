@@ -34,7 +34,6 @@
       <button type="submit">Login</button>
     </form>
 
-    <p v-if="success" class="success"> Login successful!</p>
   </div>
 </template>
 
@@ -120,7 +119,6 @@ button {
 button:hover {
   background-color: #2f8b68;
 }
-
 .success {
   margin-top: 15px;
   color: #2e8b57;
