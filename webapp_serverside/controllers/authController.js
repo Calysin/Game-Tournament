@@ -37,7 +37,7 @@ export const authController = {
       if (!user) {
         return res.status(400).json({
           success: false,
-          message: 'Invalid credentials'
+          message: 'Invalid email or password'
         });
       }
 
@@ -45,7 +45,7 @@ export const authController = {
       if (!match) {
         return res.status(400).json({
           success: false,
-          message: 'Invalid credentials'
+          message: 'Invalid password'
         });
       }
 
