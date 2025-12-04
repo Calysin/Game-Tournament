@@ -1,8 +1,8 @@
 <template>
-  <div class="login-container">
-    <h1>Login</h1>
+  <div class="register-container">
+    <h1>Register</h1>
 
-    <form @submit.prevent="login">
+    <form @submit.prevent="register">
       <input v-model="email" type="email" placeholder="Email" required />
 
       <div class="password-container">
@@ -18,22 +18,22 @@
         </button>
       </div>
 
-      <button type="submit">Login</button>
+      <button type="submit">Register</button>
     </form>
 
-    <p v-if="success" class="success">🎉 Login successful!</p>
+    <p v-if="success" class="success">🎉 Registration successful! You can now log in.</p>
     <p v-if="error" class="error">{{ error }}</p>
 
-    <p class="register-link">
-      Don't have an account?
-      <button @click="goToRegister" class="link-button">Register here</button>
+    <p class="login-link">
+      Already have an account?
+      <button @click="goToLogin" class="link-button">Login here</button>
     </p>
   </div>
 </template>
 
 <script>
 export default {
-  name: "LoginView",
+  name: "RegisterView",
   data() {
     return {
       email: "",
@@ -44,25 +44,39 @@ export default {
     };
   },
   methods: {
-    async login() {
+    async register() {
       this.error = "";
+      this.success = false;
+
       try {
-        const response = await fetch("http://localhost:3000/auth/login", {
+        const response = await fetch("http://localhost:3000/auth/register", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ email: this.email, password: this.password })
+          body: JSON.stringify({
+            email: this.email,
+            password: this.password
+          })
         });
 
-        const data = await response.json();
+        let data = {};
+        try {
+          data = await response.json(); // avoid crash if backend sends nothing
+        } catch (e) {
+          this.error = "Invalid server response.";
+          return;
+        }
+
+        if (!response.ok) {
+          this.error = data.message || "Registration failed. Try again.";
+          return;
+        }
 
         if (data.success) {
           this.success = true;
-          localStorage.setItem("token", data.token);
-          setTimeout(() => {
-            this.$router.push("/JoinTournament");
-          }, 1200);
+          this.email = "";
+          this.password = "";
         } else {
-          this.error = data.message || "Invalid email or password.";
+          this.error = data.message || "Registration failed. Try again.";
         }
       } catch (err) {
         console.error(err);
@@ -70,15 +84,16 @@ export default {
       }
     },
 
-    goToRegister() {
-      this.$router.push("/Register");
+    goToLogin() {
+      this.$router.push("/Login");
     }
   }
 };
 </script>
 
+
 <style scoped>
-.login-container {
+.register-container {
   max-width: 350px;
   margin: 50px auto;
   padding: 25px;
@@ -139,7 +154,7 @@ button[type="submit"]:hover {
   font-weight: bold;
 }
 
-.register-link {
+.login-link {
   margin-top: 20px;
   font-size: 0.9rem;
 }

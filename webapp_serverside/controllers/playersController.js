@@ -1,5 +1,5 @@
 
-import { PlayersRepository } from "../repositories/players.repository.js";
+import { PlayersRepository } from "../repository/players.repository.js";
 
 export const PlayersController = {
   async list(req, res) {

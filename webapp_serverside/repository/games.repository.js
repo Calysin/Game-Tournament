@@ -1,5 +1,5 @@
 
-import pool from "../utils/db.include.js";
+import pool from "./db.include.js";
 
 export const GamesRepository = {
   async getAll() {

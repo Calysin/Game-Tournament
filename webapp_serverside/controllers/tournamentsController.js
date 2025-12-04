@@ -1,5 +1,5 @@
 
-import { TournamentsRepository } from "../repositories/tournaments.repository.js";
+import { TournamentsRepository } from "../repository/tournaments.repository.js";
 
 export const TournamentsController = {
   async list(req, res) {

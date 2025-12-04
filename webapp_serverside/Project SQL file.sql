@@ -84,14 +84,13 @@ add constraint ck_dategame
 check (date_game >= '2020-03-17');
 
 -- users table for authentication
-CREATE TABLE IF NOT EXISTS users (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  email VARCHAR(255) NOT NULL UNIQUE,
-  password_hash VARCHAR(255) NOT NULL,
-  username VARCHAR(100),
-  role ENUM('USER','ADMIN') NOT NULL DEFAULT 'USER',
-  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+CREATE TABLE users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    role ENUM('USER','ADMIN') DEFAULT 'USER'
 );
+
 
 
 INSERT INTO Player (ID_player, Surname, Name, Pseudo, Age, Gender) VALUES 

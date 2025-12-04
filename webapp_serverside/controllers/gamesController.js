@@ -1,5 +1,5 @@
 
-import { GamesRepository } from "../repositories/games.repository.js";
+import { GamesRepository } from "../repository/games.repository.js";
 
 export const GamesController = {
   async list(req, res) {
