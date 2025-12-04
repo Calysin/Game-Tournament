@@ -1,32 +1,56 @@
-import fs from "fs";
-import path from "path";
 
-const dataPath = path.resolve("./data/players.json");
+import { PlayersRepository } from "../repositories/players.repository.js";
 
-export const getPlayers = (req, res) => {
-  try {
-    const players = JSON.parse(fs.readFileSync(dataPath, "utf-8"));
-    res.json(players);
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ message: "Failed to read players data" });
-  }
-};
+export const PlayersController = {
+  async list(req, res) {
+    try {
+      const players = await PlayersRepository.getAll();
+      res.json(players);
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({ message: "Server error" });
+    }
+  },
 
-export const addPlayer = (req, res) => {
-  try {
-    const players = JSON.parse(fs.readFileSync(dataPath, "utf-8"));
-    const newPlayer = req.body;
+  async get(req, res) {
+    try {
+      const p = await PlayersRepository.getById(req.params.id);
+      if (!p) return res.status(404).json({ message: "Not found" });
+      res.json(p);
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({ message: "Server error" });
+    }
+  },
 
-    // Optional: add ID
-    newPlayer.ID_player = players.length + 1;
+  async create(req, res) {
+    try {
+      const payload = req.body;
+      await PlayersRepository.create(payload);
+      res.json({ success: true });
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({ message: "Server error" });
+    }
+  },
 
-    players.push(newPlayer);
-    fs.writeFileSync(dataPath, JSON.stringify(players, null, 2));
+  async update(req, res) {
+    try {
+      const updated = await PlayersRepository.update(req.params.id, req.body);
+      res.json(updated || { success: false });
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({ message: "Server error" });
+    }
+  },
 
-    res.json({ success: true });
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ success: false, message: "Failed to add player" });
+  async remove(req, res) {
+    try {
+      await PlayersRepository.delete(req.params.id);
+      res.json({ success: true });
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({ message: "Server error" });
+    }
   }
 };
