@@ -1,39 +1,12 @@
 <template>
   <div class="login-container">
     <h1>Login</h1>
-
-
     <form @submit.prevent="login">
       <input v-model="email" type="email" placeholder="E-mail" required />
-      <div style="position: relative; width: 90%; margin: 0 auto 15px;">
-        <input 
-          v-model="password" 
-          :type="showPassword ? 'text' : 'password'" 
-          placeholder="Password" 
-          @blur="validatePassword" 
-          :class="{'error' : passwordError}" 
-          
-          required 
-        />
-        <button 
-  type="button" 
-  @click="showPassword = !showPassword"
-  class="toggle-password"
->
-  <svg v-if="!showPassword" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-    <circle cx="12" cy="12" r="3"></circle>
-  </svg>
-  <svg v-else width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-    <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
-    <line x1="1" y1="1" x2="23" y2="23"></line>
-  </svg>
-</button>
-      </div>
-      <span v-if="passwordError" class="error-message">{{ passwordError }}</span>
+       <input v-model="password" type="password" placeholder="Password" required />
       <button type="submit">Login</button>
     </form>
-
+    <p v-if="success" class="success"> Login successful!</p>
   </div>
 </template>
 
@@ -51,9 +24,6 @@ export default {
   },
   methods: {
     login() {
-      if (!this.validatePassword()) {
-    return;
-      }
       this.success = true;
       localStorage.setItem("loggedIn", "true");
 
@@ -61,31 +31,6 @@ export default {
         this.$router.push("/JoinTournament");
       }, 1200);
     },
-    validatePassword() {
-      if (this.password.length < 5) {
-        this.passwordError = "Le mot de passe doit contenir au moins 5 caractères."
-        return false
-      }
-      if (!/[A-Z]/.test(this.password)){
-        this.passwordError = "Le mot de passe doit contenir une majuscule."
-        return false
-      }
-      if (!/[a-z]/.test(this.password)){
-        this.passwordError = "Le mot de passe doit contenir une minuscule."
-        return false
-      }
-      if (!/[0-9]/.test(this.password)){
-        this.passwordError = "Le mot de passe doit contenir un chiffre."
-        return false
-      }
-      this.passwordError = ''
-      return true
-    },
-    clearPasswordError() {
-    if (this.passwordError) {
-      this.passwordError = ''
-    }
-  }
   }
 };
 </script>
@@ -119,6 +64,7 @@ button {
 button:hover {
   background-color: #2f8b68;
 }
+
 .success {
   margin-top: 15px;
   color: #2e8b57;
