@@ -1,4 +1,3 @@
-
 import { PlayersRepository } from "../repository/players.repository.js";
 
 export const PlayersController = {
@@ -25,9 +24,8 @@ export const PlayersController = {
 
   async create(req, res) {
     try {
-      const payload = req.body;
-      await PlayersRepository.create(payload);
-      res.json({ success: true });
+      const newPlayer = await PlayersRepository.create(req.body);
+      res.json(newPlayer);
     } catch (err) {
       console.error(err);
       res.status(500).json({ message: "Server error" });

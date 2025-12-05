@@ -70,33 +70,22 @@
           <td>{{ player.Gender }}</td>
 
           <td>
-            <template v-if="editablePlayers.includes(player.ID_player)">
-              <button @click="startEdit(player)" class="action-btn edit-btn">Edit</button>
-              <button @click="deletePlayer(player.ID_player)" class="action-btn delete-btn">Delete</button>
-            </template>
-
-            <template v-else>
-              <span class="locked">Locked</span>
-            </template>
+            <button @click="startEdit(player)" class="action-btn edit-btn">Edit</button>
+            <button @click="deletePlayer(player.ID_player)" class="action-btn delete-btn">Delete</button>
           </td>
         </tr>
       </tbody>
     </table>
 
   </div>
-
-  
 </template>
 
 <script>
-import playersData from '@/assets/Player.json';
-
 export default {
   name: "PlayerList",
-
   data() {
     return {
-      players: playersData,
+      players: [],
       newPlayer: {
         Pseudo: "",
         Name: "",
@@ -104,67 +93,74 @@ export default {
         Age: null,
         Gender: ""
       },
-      editingPlayer: null,
-      editablePlayers: [] 
+      editingPlayer: null
     };
   },
 
+  created() {
+    this.loadPlayers();
+  },
+
   methods: {
-  
-    addPlayer() {
-      const nextId =
-        this.players.length > 0
-          ? Math.max(...this.players.map((p) => p.ID_player)) + 1
-          : 1;
-
-      const newEntry = {
-        ID_player: nextId,
-        ...this.newPlayer,
-      };
-
-      this.players.push(newEntry);
-      this.editablePlayers.push(nextId);
-
-      // Reset form
-      this.newPlayer = {
-        Pseudo: "",
-        Name: "",
-        Surname: "",
-        Age: null,
-        Gender: "",
-      };
+    async loadPlayers() {
+      try {
+        const res = await fetch("http://localhost:3000/players");
+        this.players = await res.json();
+      } catch (err) {
+        console.error("Failed to load players:", err);
+      }
     },
 
-    // START EDIT
+    async addPlayer() {
+      try {
+        const res = await fetch("http://localhost:3000/players", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(this.newPlayer)
+        });
+
+        const added = await res.json();
+        this.players.push(added);
+
+        // reset form
+        this.newPlayer = { Pseudo: "", Name: "", Surname: "", Age: null, Gender: "" };
+      } catch (err) {
+        console.error(err);
+      }
+    },
+
     startEdit(player) {
-      if (!this.editablePlayers.includes(player.ID_player)) return;
       this.editingPlayer = { ...player };
     },
 
-    // CONFIRM EDIT
-    confirmEdit() {
-      const index = this.players.findIndex(
-        (p) => p.ID_player === this.editingPlayer.ID_player
-      );
+    async confirmEdit() {
+      try {
+        const res = await fetch(`http://localhost:3000/players/${this.editingPlayer.ID_player}`, {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(this.editingPlayer)
+        });
+        const updated = await res.json();
+        const index = this.players.findIndex(p => p.ID_player === updated.ID_player);
+        if (index !== -1) this.players[index] = updated;
 
-      if (index !== -1) {
-        this.players[index] = { ...this.editingPlayer };
+        this.editingPlayer = null;
+      } catch (err) {
+        console.error(err);
       }
-
-      this.editingPlayer = null;
     },
 
-    // CANCEL EDIT
     cancelEdit() {
       this.editingPlayer = null;
     },
 
-    // DELETE PLAYER
-    deletePlayer(id) {
-      if (!this.editablePlayers.includes(id)) return;
-
-      this.players = this.players.filter((p) => p.ID_player !== id);
-      this.editablePlayers = this.editablePlayers.filter((x) => x !== id);
+    async deletePlayer(id) {
+      try {
+        await fetch(`http://localhost:3000/players/${id}`, { method: "DELETE" });
+        this.players = this.players.filter(p => p.ID_player !== id);
+      } catch (err) {
+        console.error(err);
+      }
     }
   }
 };

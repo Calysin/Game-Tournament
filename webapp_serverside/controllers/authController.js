@@ -1,10 +1,9 @@
-// controllers/authController.js
+
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import { authRepository } from "../utils/authRepository.js";
+import { authRepository } from "../repository/authRepository.js";
 
 export const authController = {
-  // REGISTER USER
   async register(req, res) {
     try {
       const { email, password } = req.body;
@@ -13,16 +12,15 @@ export const authController = {
       if (existing) return res.status(400).json({ message: "Email already exists" });
 
       const hash = await bcrypt.hash(password, 10);
-
       const user = await authRepository.createUser(email, hash);
 
       res.json({ message: "Registration successful", user });
     } catch (err) {
+      console.error(err);
       res.status(500).json({ error: err.message });
     }
   },
 
-  // LOGIN USER
   async login(req, res) {
     try {
       const { email, password } = req.body;
@@ -39,12 +37,13 @@ export const authController = {
         { expiresIn: "2h" }
       );
 
-      res.json({ 
-        message: "Login successful", 
+      res.json({
+        message: "Login successful",
         token,
         user: { id: user.id, email: user.email, role: user.role }
       });
     } catch (err) {
+      console.error(err);
       res.status(500).json({ error: err.message });
     }
   }
