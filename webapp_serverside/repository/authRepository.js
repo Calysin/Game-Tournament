@@ -1,18 +1,19 @@
-import db from './db.include.js';
-import bcrypt from 'bcrypt';
+// utils/authRepository.js
+import pool from "./db.include.js";
 
-export const AuthRepository = {
-  async registerUser(email, password, role = 'USER') {
-    const hashedPassword = await bcrypt.hash(password, 10);
-    const [result] = await db.query(
-      'INSERT INTO users (email, password, role) VALUES (?, ?, ?)',
-      [email, hashedPassword, role]
-    );
-    return result;
+export const authRepository = {
+  // Find user by email
+  async findByEmail(email) {
+    const [rows] = await pool.query("SELECT * FROM users WHERE email = ?", [email]);
+    return rows[0] || null;
   },
 
-  async getUserByEmail(email) {
-    const [rows] = await db.query('SELECT * FROM users WHERE email = ?', [email]);
-    return rows[0];
+  // Insert a new user
+  async createUser(email, passwordHash, role = "USER") {
+    const result = await pool.query(
+      "INSERT INTO users (email, password, role) VALUES (?, ?, ?)",
+      [email, passwordHash, role]
+    );
+    return { id: result[0].insertId, email, role };
   }
 };

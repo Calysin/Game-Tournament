@@ -2,47 +2,43 @@
   <div class="join-container">
     <h1>Join a Tournament</h1>
 
-```
-<p class="intro">
-  Fill out the form below to join one of our tournaments!
-</p>
+    <p class="intro">
+      Fill out the form below to join one of our tournaments!
+    </p>
 
-<form @submit.prevent="submitForm">
-  <!-- Tournament selection -->
-  <select v-model="player.Tournament" required>
-    <option disabled value="">Select Tournament</option>
-    <option v-for="t in tournaments" :key="t.ID_tournament">
-      {{ t.Name_tournament }}
-    </option>
-  </select>
+    <form @submit.prevent="submitForm">
+      <!-- Tournament selection -->
+      <select v-model="player.Tournament" required>
+        <option disabled value="">Select Tournament</option>
+        <option v-for="t in tournaments" :key="t.ID_tournament">
+          {{ t.Name_tournament }}
+        </option>
+      </select>
 
-  <input v-model="player.Pseudo" placeholder="Pseudo" required />
-  <input v-model="player.Name" placeholder="Name" required />
-  <input v-model="player.Surname" placeholder="Surname" required />
+      <input v-model="player.Pseudo" placeholder="Pseudo" required />
+      <input v-model="player.Name" placeholder="Name" required />
+      <input v-model="player.Surname" placeholder="Surname" required />
+      <input
+        v-model.number="player.Age"
+        type="number"
+        min="1"
+        placeholder="Age"
+        required
+      />
 
-  <input
-    v-model.number="player.Age"
-    type="number"
-    min="1"
-    placeholder="Age"
-    required
-  />
+      <select v-model="player.Gender" required>
+        <option disabled value="">Select gender</option>
+        <option>Boy</option>
+        <option>Girl</option>
+      </select>
 
-  <select v-model="player.Gender" required>
-    <option disabled value="">Select gender</option>
-    <option>Boy</option>
-    <option>Girl</option>
-  </select>
+      <button type="submit">Join Tournament</button>
+    </form>
 
-  <button type="submit">Join Tournament</button>
-</form>
-
-<p v-if="success" class="success">
-  🎉 Successfully joined the tournament!
-</p>
-<p v-if="error" class="error">{{ error }}</p>
-```
-
+    <p v-if="success" class="success">
+      🎉 Successfully joined the tournament!
+    </p>
+    <p v-if="error" class="error">{{ error }}</p>
   </div>
 </template>
 
@@ -77,6 +73,7 @@ export default {
         this.error = "Failed to load tournaments.";
       }
     },
+
     async submitForm() {
       this.success = false;
       this.error = "";

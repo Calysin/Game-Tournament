@@ -92,7 +92,6 @@ CREATE TABLE users (
 );
 
 
-
 INSERT INTO Player (ID_player, Surname, Name, Pseudo, Age, Gender) VALUES 
 (1, 'Tea', 'Julia', 'IAmJuliaah', 20, 'Girl'),
 (2, 'Chen', 'Irene', 'Calyisn', 20, 'Girl'),
@@ -244,3 +243,4 @@ select * from Player;
 select * from Game;
 select * from Tournament;
 select * from Match_;
+select * from users;

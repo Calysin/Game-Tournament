@@ -1,5 +1,5 @@
 
-import pool from "./db.include.js";
+import pool from "../utils/db.include.js";
 
 export const UsersRepository = {
   async findByEmail(email) {

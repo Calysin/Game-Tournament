@@ -1,64 +1,51 @@
-import { AuthRepository } from '../repository/authRepository.js';
-import bcrypt from 'bcrypt';
+// controllers/authController.js
+import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
+import { authRepository } from "../utils/authRepository.js";
 
 export const authController = {
+  // REGISTER USER
   async register(req, res) {
-    const { email, password } = req.body;
-
     try {
-      const existing = await AuthRepository.getUserByEmail(email);
-      if (existing) {
-        return res.status(400).json({
-          success: false,
-          message: 'User already exists'
-        });
-      }
+      const { email, password } = req.body;
 
-      await AuthRepository.registerUser(email, password);
+      const existing = await authRepository.findByEmail(email);
+      if (existing) return res.status(400).json({ message: "Email already exists" });
 
-      res.json({
-        success: true,
-        message: 'Registration successful'
-      });
+      const hash = await bcrypt.hash(password, 10);
+
+      const user = await authRepository.createUser(email, hash);
+
+      res.json({ message: "Registration successful", user });
     } catch (err) {
-      console.error(err);
-      res.status(500).json({
-        success: false,
-        message: 'Registration failed. Try again.'
-      });
+      res.status(500).json({ error: err.message });
     }
   },
 
+  // LOGIN USER
   async login(req, res) {
-    const { email, password } = req.body;
-
     try {
-      const user = await AuthRepository.getUserByEmail(email);
-      if (!user) {
-        return res.status(400).json({
-          success: false,
-          message: 'Invalid email or password'
-        });
-      }
+      const { email, password } = req.body;
+
+      const user = await authRepository.findByEmail(email);
+      if (!user) return res.status(400).json({ message: "Invalid email or password" });
 
       const match = await bcrypt.compare(password, user.password);
-      if (!match) {
-        return res.status(400).json({
-          success: false,
-          message: 'Invalid password'
-        });
-      }
+      if (!match) return res.status(400).json({ message: "Invalid email or password" });
 
-      res.json({
-        success: true,
-        user: { email: user.email, role: user.role }
+      const token = jwt.sign(
+        { id: user.id, role: user.role },
+        process.env.JWT_SECRET,
+        { expiresIn: "2h" }
+      );
+
+      res.json({ 
+        message: "Login successful", 
+        token,
+        user: { id: user.id, email: user.email, role: user.role }
       });
     } catch (err) {
-      console.error(err);
-      res.status(500).json({
-        success: false,
-        message: 'Login failed. Try again.'
-      });
+      res.status(500).json({ error: err.message });
     }
   }
 };
