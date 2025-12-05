@@ -10,7 +10,7 @@ DROP TABLE IF EXISTS Game;
 DROP TABLE IF EXISTS Player;
 
 CREATE TABLE Player (
-   ID_player INT,
+   ID_player INT AUTO_INCREMENT,
    Surname VARCHAR(50) NOT NULL,
    Name VARCHAR(50) NOT NULL,
    Pseudo VARCHAR(50) NOT NULL,
@@ -82,6 +82,15 @@ check (Date_end >= Date_start );
 alter table Match_
 add constraint ck_dategame
 check (date_game >= '2020-03-17');
+
+-- users table for authentication
+CREATE TABLE users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    role ENUM('USER','ADMIN') DEFAULT 'USER'
+);
+
 
 INSERT INTO Player (ID_player, Surname, Name, Pseudo, Age, Gender) VALUES 
 (1, 'Tea', 'Julia', 'IAmJuliaah', 20, 'Girl'),
@@ -234,3 +243,4 @@ select * from Player;
 select * from Game;
 select * from Tournament;
 select * from Match_;
+select * from users;

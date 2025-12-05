@@ -7,7 +7,7 @@
       <router-link to="/boardtournament">Board Tournament</router-link>
       <router-link to="/cardtournament">Card Tournament</router-link>
       <router-link to="/esporttournament">Online Tournament</router-link>
-      <router-link to="/Login">login</router-link>
+      <router-link to="/Login">Login</router-link>
     </nav>
 
     <router-view />
