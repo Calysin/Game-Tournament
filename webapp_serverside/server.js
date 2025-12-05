@@ -3,6 +3,8 @@ import cors from "cors";
 import dotenv from "dotenv";
 
 dotenv.config();
+console.log("Loaded JWT_SECRET:", process.env.JWT_SECRET);
+
 
 import playersRoutes from "./routes/playersRoutes.js";
 import gamesRoutes from "./routes/gamesRoutes.js";
