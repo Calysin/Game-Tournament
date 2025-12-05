@@ -1,4 +1,3 @@
-
 import express from "express";
 import { GamesController } from "../controllers/gamesController.js";
 import { authenticate } from "../middleware/authenticate.js";

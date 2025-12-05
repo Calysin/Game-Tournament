@@ -1,11 +1,10 @@
-
 import { GamesRepository } from "../repository/games.repository.js";
 
 export const GamesController = {
   async list(req, res) {
     try {
-      const rows = await GamesRepository.getAll();
-      res.json(rows);
+      const games = await GamesRepository.getAll();
+      res.json(games);
     } catch (err) {
       console.error(err);
       res.status(500).json({ message: "Server error" });
@@ -14,9 +13,9 @@ export const GamesController = {
 
   async get(req, res) {
     try {
-      const g = await GamesRepository.getById(req.params.id);
-      if (!g) return res.status(404).json({ message: "Not found" });
-      res.json(g);
+      const game = await GamesRepository.getById(req.params.id);
+      if (!game) return res.status(404).json({ message: "Not found" });
+      res.json(game);
     } catch (err) {
       console.error(err);
       res.status(500).json({ message: "Server error" });
@@ -25,8 +24,8 @@ export const GamesController = {
 
   async create(req, res) {
     try {
-      await GamesRepository.create(req.body);
-      res.json({ success: true });
+      const newGame = await GamesRepository.create(req.body);
+      res.json(newGame);
     } catch (err) {
       console.error(err);
       res.status(500).json({ message: "Server error" });
@@ -35,8 +34,8 @@ export const GamesController = {
 
   async update(req, res) {
     try {
-      const u = await GamesRepository.update(req.params.id, req.body);
-      res.json(u || { success: false });
+      const updated = await GamesRepository.update(req.params.id, req.body);
+      res.json(updated || { success: false });
     } catch (err) {
       console.error(err);
       res.status(500).json({ message: "Server error" });

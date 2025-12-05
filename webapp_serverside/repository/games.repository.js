@@ -1,4 +1,3 @@
-
 import pool from "../utils/db.include.js";
 
 export const GamesRepository = {
@@ -13,12 +12,12 @@ export const GamesRepository = {
   },
 
   async create(game) {
-    const { ID_game, Name_game, Type_game, Editor, Release_date, Age_requirement } = game;
-    await pool.query(
-      "INSERT INTO Game (ID_game, Name_game, Type_game, Editor, Release_date, Age_requirement) VALUES (?, ?, ?, ?, ?, ?)",
-      [ID_game, Name_game, Type_game, Editor, Release_date, Age_requirement]
+    const { Name_game, Type_game, Editor, Release_date, Age_requirement } = game;
+    const [result] = await pool.query(
+      "INSERT INTO Game (Name_game, Type_game, Editor, Release_date, Age_requirement) VALUES (?, ?, ?, ?, ?)",
+      [Name_game, Type_game, Editor, Release_date, Age_requirement]
     );
-    return { success: true };
+    return { ID_game: result.insertId, Name_game, Type_game, Editor, Release_date, Age_requirement };
   },
 
   async update(id, patch) {

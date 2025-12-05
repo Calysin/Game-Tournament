@@ -4,12 +4,11 @@
     <h1>Games & Tournaments Management</h1>
 
     <p class="intro">
-       Welcome to our official list of games featured in JEI Entertainment tournaments!                                  
-
-           Across the years, we’ve hosted exciting competitions spanning board, card, and online games.  
+      Welcome to our official list of games featured in JEI Entertainment tournaments!  
+      Across the years, we’ve hosted exciting competitions spanning board, card, and online games.
     </p>
 
-
+    <!-- === GAMES SECTION === -->
     <section class="section">
       <h2>All Featured Games</h2>
 
@@ -23,35 +22,13 @@
             <option>Board</option>
             <option>Online</option>
           </select>
-          <input v-model="newGame.Editor" placeholder="Editor (e.g. Mattel)" required />
+          <input v-model="newGame.Editor" placeholder="Editor" required />
           <input v-model="newGame.Release_date" type="date" required />
           <input v-model.number="newGame.Age_requirement" type="number" min="0" placeholder="Age req." required />
           <button class="action-btn add-btn" type="submit">Add Game</button>
         </form>
       </div>
 
-  
-      <div v-if="editingGame" class="add-box">
-        <h3>Edit Game</h3>
-        <form @submit.prevent="confirmEditGame" class="form-row">
-          <input v-model="editingGame.Name_game" placeholder="Name" required />
-          <select v-model="editingGame.Type_game" required>
-            <option disabled value="">Type</option>
-            <option>Card</option>
-            <option>Board</option>
-            <option>Online</option>
-          </select>
-          <input v-model="editingGame.Editor" placeholder="Editor" required />
-          <input v-model="editingGame.Release_date" type="date" required />
-          <input v-model.number="editingGame.Age_requirement" type="number" min="0" placeholder="Age req." required />
-          <div class="edit-actions">
-            <button class="action-btn edit-btn" type="submit">Save</button>
-            <button class="action-btn cancel-btn" type="button" @click="cancelEditGame">Cancel</button>
-          </div>
-        </form>
-      </div>
-
-       <h2>Games Table</h2>
       <table class="data-table">
         <thead>
           <tr>
@@ -73,13 +50,8 @@
             <td>{{ formatDate(game.Release_date) }}</td>
             <td>{{ game.Age_requirement }}+</td>
             <td>
-              <template v-if="editableGames.includes(game.ID_game)">
-                <button class="action-btn edit-btn" @click="startEditGame(game)">Edit</button>
-                <button class="action-btn delete-btn" @click="deleteGame(game.ID_game)">Delete</button>
-              </template>
-              <template v-else>
-                <span class="locked">Locked</span>
-              </template>
+              <button class="action-btn edit-btn" @click="startEditGame(game)">Edit</button>
+              <button class="action-btn delete-btn" @click="deleteGame(game.ID_game)">Delete</button>
             </td>
           </tr>
         </tbody>
@@ -90,35 +62,18 @@
     <section class="section">
       <h2>Past Tournaments</h2>
 
-   
       <div class="add-box">
         <h3>Add a Tournament</h3>
         <form @submit.prevent="addTournament" class="form-row">
-          <input v-model="newTournament.Name_tournament" placeholder="Name (e.g. CardCaptor)" required />
+          <input v-model="newTournament.Name_tournament" placeholder="Name" required />
           <input v-model="newTournament.Location" placeholder="Location" required />
           <input v-model="newTournament.Date_start" type="date" required />
           <input v-model="newTournament.Date_end" type="date" required />
-          <input v-model="newTournament.Reward" placeholder="Reward (e.g. Money)" required />
+          <input v-model="newTournament.Reward" placeholder="Reward" required />
           <button class="action-btn add-btn" type="submit">Add Tournament</button>
         </form>
       </div>
 
-      <div v-if="editingTournament" class="add-box">
-        <h3>Edit Tournament</h3>
-        <form @submit.prevent="confirmEditTournament" class="form-row">
-          <input v-model="editingTournament.Name_tournament" placeholder="Name" required />
-          <input v-model="editingTournament.Location" placeholder="Location" required />
-          <input v-model="editingTournament.Date_start" type="date" required />
-          <input v-model="editingTournament.Date_end" type="date" required />
-          <input v-model="editingTournament.Reward" placeholder="Reward" required />
-          <div class="edit-actions">
-            <button class="action-btn edit-btn" type="submit">Save</button>
-            <button class="action-btn cancel-btn" type="button" @click="cancelEditTournament">Cancel</button>
-          </div>
-        </form>
-      </div>
-
-      <!-- Tournaments Table -->
       <table class="data-table">
         <thead>
           <tr>
@@ -136,155 +91,119 @@
             <td>{{ t.ID_tournament }}</td>
             <td>{{ t.Name_tournament }}</td>
             <td>{{ t.Location }}</td>
-            <td>{{ t.Date_start }}</td>
-            <td>{{ t.Date_end }}</td>
+            <td>{{ formatDate(t.Date_start) }}</td>
+            <td>{{ formatDate(t.Date_end) }}</td>
             <td>{{ t.Reward }}</td>
             <td>
-              <template v-if="editableTournaments.includes(t.ID_tournament)">
-                <button class="action-btn edit-btn" @click="startEditTournament(t)">Edit</button>
-                <button class="action-btn delete-btn" @click="deleteTournament(t.ID_tournament)">Delete</button>
-              </template>
-              <template v-else>
-                <span class="locked">Locked</span>
-              </template>
+              <button class="action-btn edit-btn" @click="startEditTournament(t)">Edit</button>
+              <button class="action-btn delete-btn" @click="deleteTournament(t.ID_tournament)">Delete</button>
             </td>
           </tr>
         </tbody>
       </table>
+
     </section>
 
   </div>
 </template>
 
 <script>
-import gamesData from '@/assets/Game.json';
-import tournamentsData from '@/assets/Tournament.json';
-
 export default {
-  name: 'GameTournamentCrud',
+  name: "GameTournamentCrud",
+
   data() {
     return {
-  
-      games: Array.isArray(gamesData) ? JSON.parse(JSON.stringify(gamesData)) : [],
-      tournaments: Array.isArray(tournamentsData) ? JSON.parse(JSON.stringify(tournamentsData)) : [],
-
-      // track IDs of newly added items
-      editableGames: [],
-      editableTournaments: [],
+      games: [],
+      tournaments: [],
 
       newGame: {
-        Name_game: '',
-        Type_game: '',
-        Editor: '',
-        Release_date: '',
+        Name_game: "",
+        Type_game: "",
+        Editor: "",
+        Release_date: "",
         Age_requirement: null
       },
-      newTournament: {
-        Name_tournament: '',
-        Location: '',
-        Date_start: '',
-        Date_end: '',
-        Reward: ''
-      },
 
-      // editing objects
-      editingGame: null,
-      editingTournament: null
+      newTournament: {
+        Name_tournament: "",
+        Location: "",
+        Date_start: "",
+        Date_end: "",
+        Reward: ""
+      }
     };
   },
 
+  created() {
+    this.fetchGames();
+    this.fetchTournaments();
+  },
+
   methods: {
-    formatDate(d) {
-      if (!d) return '';
-      return d;
+    /** ---- Fix for dates ---- */
+    formatDate(dateString) {
+      if (!dateString) return "";
+      return dateString.split("T")[0];
     },
 
-    addGame() {
-     
-      const g = this.newGame;
-      if (!g.Name_game || !g.Type_game || !g.Editor || !g.Release_date || g.Age_requirement == null) return;
-
-      const nextId = this.games.length ? Math.max(...this.games.map(x => x.ID_game)) + 1 : 1;
-      const newEntry = {
-        ID_game: nextId,
-        Name_game: g.Name_game,
-        Type_game: g.Type_game,
-        Editor: g.Editor,
-        Release_date: g.Release_date,
-        Age_requirement: Number(g.Age_requirement)
-      };
-      this.games.push(newEntry);
-      this.editableGames.push(nextId);
-
-      // reset form
-      this.newGame = { Name_game: '', Type_game: '', Editor: '', Release_date: '', Age_requirement: null };
+    /** ---- Fetch Games ---- */
+    async fetchGames() {
+      const res = await fetch("http://localhost:3000/games");
+      this.games = await res.json();
     },
 
-    startEditGame(game) {
-      if (!this.editableGames.includes(game.ID_game)) return;
-      this.editingGame = { ...game };
+    /** ---- Fetch Tournaments ---- */
+    async fetchTournaments() {
+      const res = await fetch("http://localhost:3000/tournaments");
+      this.tournaments = await res.json();
     },
 
-    confirmEditGame() {
-      if (!this.editingGame) return;
-      const idx = this.games.findIndex(g => g.ID_game === this.editingGame.ID_game);
-      if (idx !== -1) {
-        this.games.splice(idx, 1, { ...this.editingGame });
-      }
+    /** ---- Add Game ---- */
+    async addGame() {
+      const res = await fetch("http://localhost:3000/games", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(this.newGame)
+      });
+
+      await this.fetchGames(); // reload clean
+      this.newGame = { Name_game: "", Type_game: "", Editor: "", Release_date: "", Age_requirement: null };
+    },
+
+    /** ---- CRUD Games ---- */
+    startEditGame(game) { this.editingGame = { ...game }; },
+
+    async confirmEditGame() {
+      await fetch(`http://localhost:3000/games/${this.editingGame.ID_game}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(this.editingGame)
+      });
+      await this.fetchGames();
       this.editingGame = null;
     },
 
-    cancelEditGame() {
-      this.editingGame = null;
+    async deleteGame(id) {
+      await fetch(`http://localhost:3000/games/${id}`, { method: "DELETE" });
+      await this.fetchGames();
     },
 
-    deleteGame(id) {
-      if (!this.editableGames.includes(id)) return;
-      this.games = this.games.filter(g => g.ID_game !== id);
-      this.editableGames = this.editableGames.filter(x => x !== id);
-    },
+    /** ---- CRUD Tournaments ---- */
+    startEditTournament(t) { this.editingTournament = { ...t }; },
 
-    addTournament() {
-      const t = this.newTournament;
-      if (!t.Name_tournament || !t.Location || !t.Date_start || !t.Date_end || !t.Reward) return;
-
-      const nextId = this.tournaments.length ? Math.max(...this.tournaments.map(x => x.ID_tournament)) + 1 : 1;
-      const newEntry = {
-        ID_tournament: nextId,
-        Name_tournament: t.Name_tournament,
-        Location: t.Location,
-        Date_start: t.Date_start,
-        Date_end: t.Date_end,
-        Reward: t.Reward
-      };
-      this.tournaments.push(newEntry);
-      this.editableTournaments.push(nextId);
-
-      this.newTournament = { Name_tournament: '', Location: '', Date_start: '', Date_end: '', Reward: '' };
-    },
-
-    startEditTournament(t) {
-      if (!this.editableTournaments.includes(t.ID_tournament)) return;
-      this.editingTournament = { ...t };
-    },
-
-    confirmEditTournament() {
-      if (!this.editingTournament) return;
-      const idx = this.tournaments.findIndex(x => x.ID_tournament === this.editingTournament.ID_tournament);
-      if (idx !== -1) {
-        this.tournaments.splice(idx, 1, { ...this.editingTournament });
-      }
+    async confirmEditTournament() {
+      await fetch(`http://localhost:3000/tournaments/${this.editingTournament.ID_tournament}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(this.editingTournament)
+      });
+      await this.fetchTournaments();
       this.editingTournament = null;
     },
 
-    cancelEditTournament() {
-      this.editingTournament = null;
-    },
-
-    deleteTournament(id) {
-      if (!this.editableTournaments.includes(id)) return;
-      this.tournaments = this.tournaments.filter(x => x.ID_tournament !== id);
-      this.editableTournaments = this.editableTournaments.filter(x => x !== id);
+    async deleteTournament(id) {
+      await fetch(`http://localhost:3000/tournaments/${id}`, { method: "DELETE" });
+      await this.fetchTournaments();
     }
   }
 };
