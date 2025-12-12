@@ -60,6 +60,8 @@ export default {
           localStorage.setItem("token", data.token);
           setTimeout(() => {
             this.$router.push("/JoinTournament");
+
+
           }, 1200);
         } else {
           this.error = data.message || "Invalid email or password.";

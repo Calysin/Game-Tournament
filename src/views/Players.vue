@@ -76,7 +76,6 @@
         </tr>
       </tbody>
     </table>
-
   </div>
 </template>
 
@@ -122,7 +121,6 @@ export default {
         const added = await res.json();
         this.players.push(added);
 
-        // reset form
         this.newPlayer = { Pseudo: "", Name: "", Surname: "", Age: null, Gender: "" };
       } catch (err) {
         console.error(err);
@@ -135,14 +133,21 @@ export default {
 
     async confirmEdit() {
       try {
+        const payload = { ...this.editingPlayer };
+        delete payload.ID_player;
+
         const res = await fetch(`http://localhost:3000/players/${this.editingPlayer.ID_player}`, {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(this.editingPlayer)
+          body: JSON.stringify(payload)
         });
+
         const updated = await res.json();
+
         const index = this.players.findIndex(p => p.ID_player === updated.ID_player);
-        if (index !== -1) this.players[index] = updated;
+        if (index !== -1) {
+          this.players.splice(index, 1, updated);
+        }
 
         this.editingPlayer = null;
       } catch (err) {
@@ -194,7 +199,6 @@ h1 {
   text-align: justify;
 }
 
-/* TABLE */
 table {
   width: 100%;
   border-collapse: collapse;
@@ -224,7 +228,6 @@ tbody tr:hover {
   transform: scale(1.01);
 }
 
-/* ADD PLAYER FORM */
 .add-player,
 .edit-player-box {
   background-color: #f5faff;
@@ -258,7 +261,6 @@ tbody tr:hover {
   width: 160px;
 }
 
-/* BUTTONS */
 .action-btn {
   padding: 10px 16px;
   border: none;
@@ -301,11 +303,6 @@ tbody tr:hover {
   transform: translateY(-2px);
 }
 
-.locked {
-  color: #888;
-  font-style: italic;
-}
-
 .edit-actions {
   width: 100%;
   display: flex;
@@ -313,7 +310,6 @@ tbody tr:hover {
   gap: 10px;
 }
 
-/* RESPONSIVE */
 @media (max-width: 700px) {
   table { font-size: 0.9rem; }
   th, td { padding: 10px; }
